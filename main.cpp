@@ -1,5 +1,7 @@
 #include <iostream>
 
+char getGrade(const int score, const int maxScore);
+
 int main()
 {
 
@@ -11,7 +13,7 @@ int main()
 
 	std::cout << "Enter " << numOfStudents << " scores: ";
 
-	int maxScore{};
+	int maxScore = scores[0];
 	for (int i = 0; i < numOfStudents; i++)
 	{
 		std::cin >> scores[i];
@@ -23,31 +25,31 @@ int main()
 
 	for (int i = 0; i < numOfStudents; i++)
 	{
-		std::cout << "Student " << (i + 1) << " score is " << scores[i] << " and grade is ";
-
-		if (scores[i] >= (maxScore - 10))
-		{
-			std::cout << "A";
-		}
-		else if (scores[i] >= (maxScore - 20))
-		{
-			std::cout << "B";
-		}
-		else if (scores[i] >= (maxScore - 30))
-		{
-			std::cout << "C";
-		}
-		else if (scores[i] >= (maxScore - 40))
-		{
-			std::cout << "D";
-		}
-		else
-		{
-			std::cout << "F";
-		}
-
-		std::cout << "\n";
+		std::cout << "Student " << (i + 1) << " score is " << scores[i] << " and grade is " << getGrade(scores[i], maxScore) << "\n";
 	}
 
+	delete[] scores;
+
 	return 0;
+}
+
+char getGrade(const int score, const int maxScore)
+{
+	if (score >= (maxScore - 10))
+	{
+		return 'A';
+	}
+	else if (score >= (maxScore - 20))
+	{
+		return 'B';
+	}
+	else if (score >= (maxScore - 30))
+	{
+		return 'C';
+	}
+	else if (score >= (maxScore - 40))
+	{
+		return 'D';
+	}
+	return 'F';
 }
